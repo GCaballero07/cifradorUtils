@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cifrado Banca</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="bootstrap-5.3.8-dist/css/bootstrap.min.css"
+        rel="stylesheet">
+</head>
+<body>
+
+<div class="container-fluid p-3 h-100">
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active"
+                    data-bs-toggle="tab"
+                    data-bs-target="#descifrar"
+                    type="button">
+                Descifrar
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link"
+                    data-bs-toggle="tab"
+                    data-bs-target="#cifrar"
+                    type="button">
+                Cifrar
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab content -->
+    <div class="tab-content border border-top-0 p-3 h-100">
+
+        <!-- TAB DESCIFRAR -->
+        <div class="tab-pane fade show active" id="descifrar">
+
+            <!-- Opciones + clave privada -->
+            <div class="row mb-3">
+                <div class="col-md-2">
+					<div class="form-check">
+                        <input class="form-check-input" type="radio" name="modo" id="radioUnselect" checked>
+                        <label class="form-check-label" for="radioUnselect">
+                            Ninguno
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="modo" id="radioMGF1">
+                        <label class="form-check-label" for="radioMGF1">
+                            MGF1
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="modo" id="radioPKCS">
+                        <label class="form-check-label" for="radioPKCS">
+                            PKCS
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    <textarea id="txtClavePrivada"
+							  class="form-control"
+                              rows="4"
+                              placeholder="Clave privada"
+                              disabled></textarea>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="mb-3 d-flex gap-2">
+                <button class="btn btn-secondary" id="botonFormato">
+                    Formato
+                </button>
+                <button class="btn btn-primary" id="botonDescifrar">
+                    Descifrar
+                </button>
+                <button class="btn btn-outline-danger" id="botonLimpiar">
+                    Limpiar
+                </button>
+            </div>
+
+            <!-- SplitPane -->
+            <div class="row g-3" style="height: 45vh;">
+                <div class="col-md-6 h-100">
+                    <textarea id="txtTextoCifrado"
+							  class="form-control h-100"
+                              placeholder="JSON a descifrar"></textarea>
+                </div>
+                <div class="col-md-6 h-100">
+                    <textarea id="txtTextoDescifrado"
+							  class="form-control h-100"
+                              placeholder="JSON descifrado"
+                              readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CIFRAR -->
+        <div class="tab-pane fade" id="cifrar">
+            <p class="text-muted">Contenido de Cifrar (pendiente)</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Logic UI JS -->
+<script type="module" src="/js/descifrar-controller.js"></script>
+
+
+<!-- Bootstrap JS -->
+<script
+    src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+</html>
