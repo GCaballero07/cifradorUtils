@@ -11,11 +11,10 @@ import com.jaiba.cifrador.entity.RequestCifrado;
 @RequestMapping("/api")
 public class CifradoController {
 
-	
-	@PostMapping("/descifrar")
-	public String descifrar(@RequestBody RequestCifrado request) {
-		System.out.println(request);
-	    return "me estas consumiendo";
-	}
+  @PostMapping("/descifrar")
+  public String descifrar(@RequestBody RequestCifrado request) {
+    System.out.println(request);
+    return "me estas consumiendo";
+  }
 
 }

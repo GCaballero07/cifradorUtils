@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CifradorApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CifradorApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(CifradorApplication.class, args);
+  }
 
 }
