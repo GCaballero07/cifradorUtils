@@ -1,4 +1,4 @@
-import { descifrar } from "./api.js";
+import {descifrar} from "./api.js";
 
 
 const radioUnselect = document.getElementById("radioUnselect");
@@ -17,7 +17,7 @@ const txtClavePrivada = document.getElementById("txtClavePrivada");
 let isTextCifradoJson = false;
 
 botonFormato.addEventListener("click", () => {
-  formatearJson(txtTextoCifrado);
+    formatearJson(txtTextoCifrado);
 });
 botonLimpiar.addEventListener("click", onLimpiar);
 botonDescifrar.addEventListener("click", ejecutarDescifrado);
@@ -28,40 +28,51 @@ radioPKCS.addEventListener("click", onClavePrivadaOn);
 
 
 function onLimpiar() {
-	txtTextoCifrado.value = "";
-	txtTextoDescifrado.value = "";
+    txtTextoCifrado.value = "";
+    txtTextoDescifrado.value = "";
 }
 
 function onClavePrivadaOn() {
-	txtClavePrivada.disabled = false;
+    txtClavePrivada.disabled = false;
 }
 
 function onClavePrivadaOff() {
-	txtClavePrivada.disabled = true;
+    txtClavePrivada.disabled = true;
 }
 
 function formatearJson(textArea) {
-  try {
-    const obj = JSON.parse(textArea.value);
-    textArea.value = JSON.stringify(obj, null, 2);
-	isTextCifradoJson = true;
-  } catch (e) {
-    alert("El texto no es un JSON válido");
-	isTextCifradoJson = false;
-  }
+    try {
+        const obj = JSON.parse(textArea.value);
+        textArea.value = JSON.stringify(obj, null, 2);
+        isTextCifradoJson = true;
+    } catch (e) {
+        alert("El texto no es un JSON válido");
+        isTextCifradoJson = false;
+    }
+    return isTextCifradoJson;
+}
+
+function isJson(textArea) {
+    try {
+        const obj = JSON.parse(textArea.value);
+        textArea.value = JSON.stringify(obj, null, 2);
+        isTextCifradoJson = true;
+    } catch (e) {
+        isTextCifradoJson = false;
+    }
 }
 
 
 async function ejecutarDescifrado() {
-  const requestCifrado = {
-    cadenaCifrada: txtTextoCifrado.value,
-	formatoJson: isTextCifradoJson
-  };
+    try {
+        isJson(txtTextoCifrado.value);
+        const requestCifrado = {
+            cadenaCifrada: txtTextoCifrado.value,
+            formatoJson: isTextCifradoJson
+        };
+        txtTextoDescifrado.value = await descifrar(requestCifrado);
 
-  try {
-    const resultado = await descifrar(requestCifrado);
-    txtTextoDescifrado.value = resultado;
-  } catch (e) {
-    alert("Error al descifrar" + e);
-  }
+    } catch (e) {
+        alert("Error al descifrar" + e);
+    }
 }
